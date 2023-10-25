@@ -4,13 +4,13 @@ const validateSection = function(stage) {
     if (stage === 1) {
         const personalInfo = document.querySelector('#personal-info');
         const name = document.querySelector('#name');
-        if (name.value === '') {
-            alert('Please enter your name');
-            return false;
-        } else if (typeof name.value != 'string' || !isNaN(name.value)) {
-            alert('Please enter a valid name');
-            return false;
-        }
+        // if (name.value === '') {
+        //     alert('Please enter your name');
+        //     return false;
+        // } else if (typeof name.value != 'string' || !isNaN(name.value)) {
+        //     alert('Please enter a valid name');
+        //     return false;
+        // }
     }
     return true;
 }

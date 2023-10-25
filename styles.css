@@ -1,3 +1,33 @@
 * {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+#left-side {
+    background-image: url('planet-volumes-4IrVnSpwk48-unsplash.jpg');
+}
+
+#right-side {
+    padding: 3em;
+}
+
+label {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+button {
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
