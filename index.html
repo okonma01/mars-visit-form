@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -16,193 +25,170 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="src/index.js"></script>
   </head>
-  <body class="">
-    <div id="left-side"></div>
-    <main id="right-side">
-      <header>
-        <h1>Wanna visit Mars?</h1>
-        <p>Fill out the form below!</p>
-      </header>
-      <form id="survey-form">
-        <section id="personal-info">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input required id="name" type="text" placeholder="John Smith" />
-          </div>
-          <div class="form-group">
-            <label for="dob">Date of Birth</label>
-            <input required id="dob" type="date" placeholder="" />
-          </div>
-          <div class="form-group">
-            <label for="nationality">Nationality</label>
+  <body>
+    <form id="form">
+      <h1>Wanna visit Mars?</h1>
+      <section id="personal-info">
+        <h3>Personal Information</h3>
+        <div class="form-group">
+          <label for="name">Full Name <span>*</span></label>
+          <input autocomplete="name" id="name" type="text" placeholder="John Smith" />
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth <span>*</span></label>
+          <input
+            id="dob"
+            type="date"
+            placeholder=""
+            min="1900-01-01"
+          />
+        </div>
+        <div class="form-group">
+          <label for="nationality">Nationality <span>*</span></label>
+          <input id="nationality" type="text" placeholder="Canadian" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span>*</span></label>
+          <input
+            autocomplete="email"
+            id="email"
+            type="email"
+            placeholder="john.smith@email.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone <span>*</span></label>
+          <input autocomplete="tel" id="phone" placeholder="(123)-456-7890" />
+        </div>
+      </section>
+      <section hidden id="travel-preferences">
+        <h3>Travel Preferences</h3>
+        <div class="form-group radio-group">
+          <label id="trip-type">Trip Type <span>*</span></label>
+          <label for="one-way">
             <input
-              required
-              id="nationality"
-              type="text"
-              placeholder="Canadian"
+              type="radio"
+              id="one-way"
+              name="travel-preferences"
+              value="one-way"
             />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
+            One Way
+          </label>
+          <label for="round-trip">
             <input
-              required
-              id="email"
-              type="email"
-              placeholder="john.smith@email.com"
+              type="radio"
+              id="round-trip"
+              name="travel-preferences"
+              value="round-trip"
             />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input required id="phone" placeholder="(123)-456-7890" />
-          </div>
-        </section>
-        <section hidden id="travel-preferences">
-          <div class="form-group">
-            <label>Travel Preferences</label>
-            <label for="one-way">
-              <input
-                type="checkbox"
-                id="one-way"
-                name="travel-preferences"
-                value="one-way"
-                required
-              />
-              One Way
-            </label>
-            <label for="round-trip">
-              <input
-                type="checkbox"
-                id="round-trip"
-                name="travel-preferences"
-                value="round-trip"
-                required
-              />
-              Round Trip
-            </label>
-          </div>
-          <div class="form-group">
-            <label for="departure-date">Departure Date</label>
-            <input required id="departure-date" type="date" />
-          </div>
-          <div class="form-group">
-            <label for="return-date">Return Date</label>
-            <input required id="return-date" type="date" />
-          </div>
-          <div class="form-group">
-            <label for="departure-location">Departure Location</label>
-            <select required id="departure-location">
-              <option value="beijing">Beijing 🇨🇳</option>
-              <option value="berlin">Berlin 🇩🇪</option>
-              <option value="dubai">Dubai 🇦🇪</option>
-              <option value="lagos">Lagos 🇳🇬</option>
-              <option value="london">London 🇬🇧</option>
-              <option value="moscow">Moscow 🇷🇺</option>
-              <option value="new-york">New York 🇺🇸</option>
-              <option value="paris">Paris 🇫🇷</option>
-              <option value="tokyo">Tokyo 🇯🇵</option>
-              <option value="toronto">Toronto 🇨🇦</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="return-location">Return Location</label>
-            <select required id="return-location">
-              <option value="beijing">Beijing 🇨🇳</option>
-              <option value="berlin">Berlin 🇩🇪</option>
-              <option value="dubai">Dubai 🇦🇪</option>
-              <option value="lagos">Lagos 🇳🇬</option>
-              <option value="london">London 🇬🇧</option>
-              <option value="moscow">Moscow 🇷🇺</option>
-              <option value="new-york">New York 🇺🇸</option>
-              <option value="paris">Paris 🇫🇷</option>
-              <option value="tokyo">Tokyo 🇯🇵</option>
-              <option value="toronto">Toronto 🇨🇦</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="accommodation-preferences"
-              >Accommodation Preferences</label
-            >
-            <select required id="accommodation-preferences">
-              <option value="none">None</option>
-              <option value="homestay">Alien Homestay</option>
-              <option value="treehouse">Crimson Treehouse</option>
-              <option value="bed-and-breakfast">Mars Bed & Breakfast</option>
-              <option value="hotel">Space Hotel</option>
-              <option value="bunker">Underground Martian Bunker</option>
-            </select>
-          </div>
-        </section>
-        <section hidden id="health-info">
-          <div class="form-group">
-            <label for="dietary-restrictions">Dietary Restrictions</label>
-            <select required id="dietary-restrictions">
-              <option value="none">None</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="vegan">Vegan</option>
-              <option value="kosher">Kosher</option>
-              <option value="halal">Halal</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="medical-conditions">Medical Conditions</label>
-            <input
-              id="medical-conditions"
-              type="text"
-              placeholder="If you have any medical conditions, please let us know here."
-            />
-          </div>
-          <div class="form-group">
-            <label for="medication">Medication</label>
-            <input
-              id="medication"
-              type="text"
-              placeholder="If you are taking any medication, please let us know here."
-            />
-          </div>
-          <div class="form-group">
-            <label for="allergies">Allergies</label>
-            <input
-              id="allergies"
-              type="text"
-              placeholder="If you have any allergies, please let us know here."
-            />
-          </div>
-          <div class="form-group">
-            <label for="emergency-contact">Emergency Contact</label>
-            <input
-              required
-              class="emergency-contact"
-              type="text"
-              placeholder="Jane Smith"
-            />
-            <input
-              required
-              class="emergency-contact"
-              type="text"
-              placeholder="(555)-123-4567"
-            />
-          </div>
-          <div class="form-group">
-            <label for="special-requests">Special Requests</label>
-            <input
-              id="special-requests"
-              type="text"
-              placeholder="If you have any special requests or preferences, please let us know here."
-            />
-          </div>
-        </section>
-        <section id="navigation">
-          <div
-            class="container d-flex flex-row-reverse justify-content-between"
+            Round Trip
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="departure-date">Departure Date <span>*</span></label>
+          <input id="departure-date" type="date" />
+        </div>
+        <div hidden class="form-group">
+          <label for="return-date">Return Date <span>*</span></label>
+          <input id="return-date" type="date" />
+        </div>
+        <div class="form-group">
+          <label for="departure-location">Departure Location <span>*</span></label>
+          <select id="departure-location">
+            <option value="beijing">Beijing 🇨🇳</option>
+            <option value="berlin">Berlin 🇩🇪</option>
+            <option value="dubai">Dubai 🇦🇪</option>
+            <option value="lagos">Lagos 🇳🇬</option>
+            <option value="london">London 🇬🇧</option>
+            <option value="moscow">Moscow 🇷🇺</option>
+            <option value="new-york">New York 🇺🇸</option>
+            <option value="paris">Paris 🇫🇷</option>
+            <option value="tokyo">Tokyo 🇯🇵</option>
+            <option value="toronto">Toronto 🇨🇦</option>
+          </select>
+        </div>
+        <div hidden class="form-group">
+          <label for="return-location">Return Location <span>*</span></label>
+          <select id="return-location">
+            <option value="beijing">Beijing 🇨🇳</option>
+            <option value="berlin">Berlin 🇩🇪</option>
+            <option value="dubai">Dubai 🇦🇪</option>
+            <option value="lagos">Lagos 🇳🇬</option>
+            <option value="london">London 🇬🇧</option>
+            <option value="moscow">Moscow 🇷🇺</option>
+            <option value="new-york">New York 🇺🇸</option>
+            <option value="paris">Paris 🇫🇷</option>
+            <option value="tokyo">Tokyo 🇯🇵</option>
+            <option value="toronto">Toronto 🇨🇦</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="accommodation-preferences"
+            >Accommodation Preferences</label
           >
-            <button hidden id="submit" type="submit">Submit</button>
-            <button id="next" type="submit">Next</button>
-            <button hidden id="back" type="button">Back</button>
-          </div>
-        </section>
-      </form>
-    </main>
+          <select id="accommodation-preferences">
+            <option value="none">None</option>
+            <option value="homestay">Alien Homestay</option>
+            <option value="treehouse">Crimson Treehouse</option>
+            <option value="bed-and-breakfast">Mars Bed & Breakfast</option>
+            <option value="hotel">Space Hotel</option>
+            <option value="bunker">Underground Martian Bunker</option>
+          </select>
+        </div>
+      </section>
+      <section hidden id="health-info">
+        <h3>Health and Safety</h3>
+        <div class="form-group">
+          <label for="medical-conditions">Medical Conditions</label>
+          <input
+            id="medical-conditions"
+            type="text"
+            placeholder="If you have any medical conditions, please let us know here."
+          />
+        </div>
+        <div class="form-group">
+          <label for="allergies">Allergies</label>
+          <input
+            id="allergies"
+            type="text"
+            placeholder="If you have any allergies, please let us know here."
+          />
+        </div>
+        <div class="form-group">
+          <label for="emergency-contact-name">Emergency Contact Name <span>*</span></label>
+          <input
+            id="emergency-contact-name"
+            type="text"
+            placeholder="Jane Smith"
+          />
+        </div>
+        <div class="form-group">
+          <label for="emergency-contact-phone">Emergency Contact Phone <span>*</span></label>
+          <input
+            id="emergency-contact-phone"
+            type="text"
+            placeholder="(123)-456-7890"
+          />
+        </div>
+        <div class="form-group">
+          <label for="special-requests">Special Requests</label>
+          <textarea
+            id="special-requests"
+            type="text"
+            rows="3"
+            placeholder="If you have any special requests or preferences, please let us know here."
+          ></textarea>
+        </div>
+      </section>
+      <section id="navigation">
+        <div>
+          <button hidden id="back" type="button">Back</button>
+          <div class="pseudo-element"></div>
+          <button id="next" type="button">Next</button>
+          <button hidden id="submit" type="submit">Submit</button>
+        </div>
+      </section>
+    </form>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
