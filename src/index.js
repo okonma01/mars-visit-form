@@ -1,7 +1,6 @@
 var stage = 1;
 
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('#form');
     const personalInfo = document.querySelector('#personal-info');
     const travelPref = document.querySelector('#travel-preferences');
     const healthInfo = document.querySelector('#health-info');
@@ -14,20 +13,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.querySelector('#email');
     const phone = document.querySelector('#phone');
 
-    const tripType = document.querySelector('#trip-type');
     const oneWay = document.querySelector('#one-way');
     const roundTrip = document.querySelector('#round-trip');
 
-    const departureDate = document.querySelector('#departure-date').parentElement;
-    const returnDate = document.querySelector('#return-date').parentElement;
+    let departureDate = document.querySelector('#departure-date').parentElement;
+    let returnDate = document.querySelector('#return-date').parentElement;
     const returnLocation = document.querySelector('#return-location').parentElement;
 
+    const emergencyName = document.querySelector('#emergency-contact-name');
+    const emergencyPhone = document.querySelector('#emergency-contact-phone');
+
     const validateSection = function (stage) {
+        let error = false;
+        let numRegex = /\d/;
+        let emailRegex = /\S+@\S+\.\S+/;
+        let phoneRegex = /\d{3}-?\d{3}-?\d{4}/;
+        let dateRegex = /\d{4}-\d{2}-\d{2}/;
+
         if (stage === 1) {
-            let error = false;
-            let numRegex = /\d/;
-            let emailRegex = /\S+@\S+\.\S+/;
-            let phoneRegex = /\d{3}-?\d{3}-?\d{4}/;
 
             // Validate name
             if (name.value === '') {
@@ -36,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (typeof name.value != 'string' || !isNaN(name.value) || numRegex.test(name.value)) {
                 name.setCustomValidity('Please enter a valid name');
                 error = true;
+            } else {
+                name.setCustomValidity('');
             }
 
             // Validate date of birth
@@ -51,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (new Date(dob.value) > new Date()) {
                 dob.setCustomValidity('Please enter a date of birth that is not in the future');
                 error = true;
+            } else {
+                dob.setCustomValidity('');
             }
 
             // Validate nationality
@@ -60,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (typeof nationality.value != 'string' || !isNaN(nationality.value) || numRegex.test(nationality.value)) {
                 nationality.setCustomValidity('Please enter a valid nationality');
                 error = true;
+            } else {
+                nationality.setCustomValidity('');
             }
 
             // Validate email
@@ -69,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (!emailRegex.test(email.value)) {
                 email.setCustomValidity('Please enter a valid email');
                 error = true;
+            } else {
+                email.setCustomValidity('');
             }
 
             // Validate phone number
@@ -78,58 +89,84 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (!phoneRegex.test(phone.value)) {
                 phone.setCustomValidity('Please enter a valid phone number');
                 error = true;
+            } else {
+                phone.setCustomValidity('');
             }
 
             if (error) {
                 backButton.click();
                 backButton.click();
             }
-        }
-
-        if (stage === 2) {
-            let error = false;
-            let numRegex = /\d/;
-            let dateRegex = /\d{4}-\d{2}-\d{2}/;
+        } else if (stage === 2) {
             let date = new Date();
 
             //  Validate trip type
             if (!oneWay.checked && !roundTrip.checked) {
-                tripType.setCustomValidity('Please select a trip type');
+                oneWay.setCustomValidity('Please select a trip type');
                 error = true;
+            } else {
+                oneWay.setCustomValidity('');
             }
 
-            // // Validate departure date
-            // if (departureDate.value === '') {
-            //     departureDate.setCustomValidity('Please enter your departure date');
-            //     error = true;
-            // } else if (!dateRegex.test(departureDate.value)) {
-            //     departureDate.setCustomValidity('Please enter a valid departure date');
-            //     error = true;
-            // } else if (departureDate.value < date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()) {
-            //     departureDate.setCustomValidity('Please enter a departure date that is not in the past');
-            //     error = true;
-            // }
+            // Validate departure date
+            departureDate = document.querySelector('#departure-date');
+            if (departureDate.value === '') {
+                departureDate.setCustomValidity('Please enter your departure date');
+                error = true;
+            } else if (!dateRegex.test(departureDate.value)) {
+                departureDate.setCustomValidity('Please enter a valid departure date');
+                error = true;
+            } else if (departureDate.value < date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()) {
+                departureDate.setCustomValidity('Please enter a departure date that is not in the past');
+                error = true;
+            } else {
+                departureDate.setCustomValidity('');
+            }
 
-            // // Validate return date
-            // if (returnDate.value === '' && !oneWay.checked) {
-            //     returnDate.setCustomValidity('Please enter your return date');
-            //     error = true;
-            // } else if (!dateRegex.test(returnDate.value) && !oneWay.checked) {
-            //     returnDate.setCustomValidity('Please enter a valid return date');
-            //     error = true;
-            // } else if (returnDate.value < date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() && !oneWay.checked) {
-            //     returnDate.setCustomValidity('Please enter a return date that is not in the past');
-            //     error = true;
-            // } else if (returnDate.value < departureDate.value && !oneWay.checked) {
-            //     returnDate.setCustomValidity('Please enter a return date that is after your departure date');
-            //     error = true;
-            // }
+            // Validate return date
+            returnDate = document.querySelector('#return-date');
+            if (returnDate.value === '' && !oneWay.checked) {
+                returnDate.setCustomValidity('Please enter your return date');
+                error = true;
+            } else if (!dateRegex.test(returnDate.value) && !oneWay.checked) {
+                returnDate.setCustomValidity('Please enter a valid return date');
+                error = true;
+            } else if (returnDate.value < date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() && !oneWay.checked) {
+                returnDate.setCustomValidity('Please enter a return date that is not in the past');
+                error = true;
+            } else if (returnDate.value < departureDate.value && !oneWay.checked) {
+                returnDate.setCustomValidity('Please enter a return date that is after your departure date');
+                error = true;
+            } else {
+                returnDate.setCustomValidity('');
+            }
 
             if (error) {
                 backButton.click();
             }
+        } else if (stage === 3) {
+            // Validate emergency contact name
+            if (emergencyName.value === '') {
+                emergencyName.setCustomValidity('Please enter your emergency contact\'s name');
+                error = true;
+            } else if (typeof emergencyName.value != 'string' || !isNaN(emergencyName.value) || numRegex.test(emergencyName.value)) {
+                emergencyName.setCustomValidity('Please enter a valid name for your emergency contact');
+                error = true;
+            } else {
+                emergencyName.setCustomValidity('');
+            }
+
+            // Validate emergency contact phone number
+            if (emergencyPhone.value === '') {
+                emergencyPhone.setCustomValidity('Please enter your emergency contact\'s phone number');
+                error = true;
+            } else if (!phoneRegex.test(emergencyPhone.value)) {
+                emergencyPhone.setCustomValidity('Please enter a valid phone number for your emergency contact');
+                error = true;
+            } else {
+                emergencyPhone.setCustomValidity('');
+            }
         }
-        // return true;
     }
 
     nextButton.addEventListener('click', function () {
@@ -174,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     submitButton.addEventListener('click', function (event) {
         validateSection(1);
         validateSection(2);
+        validateSection(3);
     });
 
     oneWay.addEventListener('click', function () {
@@ -195,7 +233,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
         }
     });
-
 
 
 });
