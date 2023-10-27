@@ -5,7 +5,13 @@ To view a live version of this project, click [here](https://okonma01.github.io/
 ## Setup
 1. Clone the repo (`git clone git@github.com:okonma01/mars-visit-form.git`)
 2. Navigate to the project directory (`cd mars-visit-form`)
-3. Open index.html in your browser
+3. Open index.html in your browser (`open index.html`)
+
+## Running Tests with Jest
+1. Navigate to the project directory (`cd mars-visit-form`)
+2. Ensure that you have Node.js installed; if not, install it [here](https://nodejs.org/en/)
+3. Install dependencies (`npm install`)
+4. Run Jest tests (`npx jest`)
 
 ## Contributing
 1. Fork the repo
@@ -15,4 +21,4 @@ To view a live version of this project, click [here](https://okonma01.github.io/
 5. Open a pull request
 
 ## License
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/okonma01/mars-visit-form/blob/main/LICENSE) for more information.

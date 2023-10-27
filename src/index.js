@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.querySelector('#email');
     const phone = document.querySelector('#phone');
 
+    const tripType = document.querySelector('#trip-type');
     const oneWay = document.querySelector('#one-way');
     const roundTrip = document.querySelector('#round-trip');
 
@@ -50,11 +51,11 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (isNaN(Date.parse(dob.value))) {
                 dob.setCustomValidity('Please enter a valid date of birth');
                 error = true;
-            } else if (dob.value < dob.min) {
-                dob.setCustomValidity('Please enter a date of birth greater than or equal to ' + dob.min);
-                error = true;
             } else if (new Date(dob.value) > new Date()) {
                 dob.setCustomValidity('Please enter a date of birth that is not in the future');
+                error = true;
+            } else if (dob.value < dob.min) {
+                dob.setCustomValidity('Please enter a date of birth greater than or equal to ' + dob.min);
                 error = true;
             } else {
                 dob.setCustomValidity('');
@@ -96,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (error) {
                 backButton.click();
                 backButton.click();
+                return false;
             }
         } else if (stage === 2) {
             let date = new Date();
@@ -143,7 +145,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (error) {
                 backButton.click();
+                return false;
             }
+
         } else if (stage === 3) {
             // Validate emergency contact name
             if (emergencyName.value === '') {
@@ -151,6 +155,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 error = true;
             } else if (typeof emergencyName.value != 'string' || !isNaN(emergencyName.value) || numRegex.test(emergencyName.value)) {
                 emergencyName.setCustomValidity('Please enter a valid name for your emergency contact');
+                error = true;
+            } else if (emergencyName.value.toLowerCase() === name.value.toLowerCase()) {
+                emergencyName.setCustomValidity('Your emergency contact\'s name cannot be the same as your name');
                 error = true;
             } else {
                 emergencyName.setCustomValidity('');
@@ -163,10 +170,19 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (!phoneRegex.test(emergencyPhone.value)) {
                 emergencyPhone.setCustomValidity('Please enter a valid phone number for your emergency contact');
                 error = true;
+            } else if (emergencyPhone.value === phone.value) {
+                emergencyPhone.setCustomValidity('Your emergency contact\'s phone number cannot be the same as your phone number');
+                error = true;
             } else {
                 emergencyPhone.setCustomValidity('');
             }
+
+            if (error) {
+                return false;
+            }
         }
+
+        return true;
     }
 
     nextButton.addEventListener('click', function () {
@@ -209,9 +225,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     submitButton.addEventListener('click', function (event) {
-        validateSection(1);
-        validateSection(2);
-        validateSection(3);
+        if (validateSection(1)) {
+            if (validateSection(2)) {
+                if (validateSection(3)) {
+                    alert('Form submitted successfully!');
+                }
+            }
+        }
     });
 
     oneWay.addEventListener('click', function () {
@@ -223,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
             returnDate.hidden = false;
             returnLocation.hidden = false;
         }
+        tripType.setAttribute('value', 'one-way');
     });
 
     roundTrip.addEventListener('click', function () {
@@ -230,9 +251,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (roundTrip.checked) {
             returnDate.hidden = false;
             returnLocation.hidden = false;
-        } else {
         }
+        tripType.setAttribute('value', 'round-trip');
     });
 
 
 });
+
+// exports.validateSection = validateSection;

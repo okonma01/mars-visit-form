@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Mars Visit Application Form</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
@@ -15,7 +16,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Mars Visit Application Form</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -32,16 +32,16 @@
         <h3>Personal Information</h3>
         <div class="form-group">
           <label for="name">Full Name <span>*</span></label>
-          <input autocomplete="name" id="name" type="text" placeholder="John Smith" />
+          <input
+            autocomplete="name"
+            id="name"
+            type="text"
+            placeholder="John Smith"
+          />
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth <span>*</span></label>
-          <input
-            id="dob"
-            type="date"
-            placeholder=""
-            min="1900-01-01"
-          />
+          <input id="dob" type="date" placeholder="" min="1900-01-01" />
         </div>
         <div class="form-group">
           <label for="nationality">Nationality <span>*</span></label>
@@ -69,7 +69,7 @@
             <input
               type="radio"
               id="one-way"
-              name="travel-preferences"
+              name="trip-type"
               value="one-way"
             />
             One Way
@@ -78,7 +78,7 @@
             <input
               type="radio"
               id="round-trip"
-              name="travel-preferences"
+              name="trip-type"
               value="round-trip"
             />
             Round Trip
@@ -93,7 +93,9 @@
           <input id="return-date" type="date" />
         </div>
         <div class="form-group">
-          <label for="departure-location">Departure Location <span>*</span></label>
+          <label for="departure-location"
+            >Departure Location <span>*</span></label
+          >
           <select id="departure-location">
             <option value="beijing">Beijing 🇨🇳</option>
             <option value="berlin">Berlin 🇩🇪</option>
@@ -155,7 +157,9 @@
           />
         </div>
         <div class="form-group">
-          <label for="emergency-contact-name">Emergency Contact Name <span>*</span></label>
+          <label for="emergency-contact-name"
+            >Emergency Contact Name <span>*</span></label
+          >
           <input
             id="emergency-contact-name"
             type="text"
@@ -163,7 +167,9 @@
           />
         </div>
         <div class="form-group">
-          <label for="emergency-contact-phone">Emergency Contact Phone <span>*</span></label>
+          <label for="emergency-contact-phone"
+            >Emergency Contact Phone <span>*</span></label
+          >
           <input
             id="emergency-contact-phone"
             type="text"
