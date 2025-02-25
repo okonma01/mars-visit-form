@@ -56,14 +56,6 @@ textarea {
     width: 100%;
 }
 
-input[type="date"]::before {
-    color: var(--fire-brick-light);
-    /* content: attr(placeholder); */
-}
-
-input[type="date"] {
-    color: var(--fire-brick-light);
-}
 
 input[type="date"]:focus,
 input[type="date"]:valid {
@@ -87,6 +79,12 @@ textarea::placeholder {
 
 #departure-location,
 #return-location {
+    color: antiquewhite;
+    background-color: var(--fire-brick-dark);
+    border: 1px solid antiquewhite;
+}
+
+#accommodation-preferences{
     color: antiquewhite;
     background-color: var(--fire-brick-dark);
     border: 1px solid antiquewhite;

@@ -224,6 +224,7 @@ describe('Mars Visit Application Form', () => {
     // Test cases for Travel Preferences section
     describe('Travel Preferences', () => {
         const today = new Date();
+        today.setHours(0, 0, 0, 0);
         const todayString = today.toISOString().substring(0, 10);
         const yesterday = new Date(today);
         yesterday.setDate(today.getDate() - 1);

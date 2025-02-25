@@ -100,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 return false;
             }
         } else if (stage === 2) {
-            let date = new Date();
+            let todays_date = new Date();
+            todays_date.setHours(0, 0, 0, 0);
 
             //  Validate trip type
             if (!oneWay.checked && !roundTrip.checked) {
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (!dateRegex.test(departureDate.value)) {
                 departureDate.setCustomValidity('Please enter a valid departure date');
                 error = true;
-            } else if (departureDate.value < date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()) {
+            } else if (new Date(departureDate.value.concat('T00:00:00')) < todays_date) {
                 departureDate.setCustomValidity('Please enter a departure date that is not in the past');
                 error = true;
             } else {
@@ -133,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (!dateRegex.test(returnDate.value) && !oneWay.checked) {
                 returnDate.setCustomValidity('Please enter a valid return date');
                 error = true;
-            } else if (returnDate.value < date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() && !oneWay.checked) {
+            } else if (new Date(returnDate.value.concat('T00:00:00')) < todays_date && !oneWay.checked) {
                 returnDate.setCustomValidity('Please enter a return date that is not in the past');
                 error = true;
             } else if (returnDate.value < departureDate.value && !oneWay.checked) {
@@ -251,6 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (roundTrip.checked) {
             returnDate.hidden = false;
             returnLocation.hidden = false;
+        } else {
+            returnDate.hidden = true;
+            returnLocation.hidden = true;
         }
         tripType.setAttribute('value', 'round-trip');
     });

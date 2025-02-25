@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth <span>*</span></label>
-          <input id="dob" type="date" placeholder="" min="1900-01-01" />
+          <input id="dob" type="date" placeholder="" min="1900-01-01" style="color: #130f0d" />
         </div>
         <div class="form-group">
           <label for="nationality">Nationality <span>*</span></label>
@@ -86,11 +86,7 @@
         </div>
         <div class="form-group">
           <label for="departure-date">Departure Date <span>*</span></label>
-          <input id="departure-date" type="date" />
-        </div>
-        <div hidden class="form-group">
-          <label for="return-date">Return Date <span>*</span></label>
-          <input id="return-date" type="date" />
+          <input id="departure-date" type="date" style="color: #130f0d"/>
         </div>
         <div class="form-group">
           <label for="departure-location"
@@ -108,6 +104,10 @@
             <option value="tokyo">Tokyo 🇯🇵</option>
             <option value="toronto">Toronto 🇨🇦</option>
           </select>
+        </div>
+        <div hidden class="form-group">
+          <label for="return-date">Return Date <span>*</span></label>
+          <input id="return-date" type="date" style="color: #130f0d"/>
         </div>
         <div hidden class="form-group">
           <label for="return-location">Return Location <span>*</span></label>

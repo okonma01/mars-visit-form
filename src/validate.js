@@ -55,7 +55,8 @@ function validateTravelPreferences(data) {
 
     // Validate departure date
     date = new Date();
-    const dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    date.setHours(0, 0, 0, 0);
+    const dateString = date.toISOString().substring(0, 10);
     if (data.departureDate === '' || data.departureDate == undefined) {
         return false;
     } else if (!dateRegex.test(data.departureDate)) {
